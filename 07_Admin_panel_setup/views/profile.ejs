@@ -1,0 +1,60 @@
+<%- include ('header') %>
+
+
+<div class="page-wrapper">
+  <div class="container-fluid p-5" style="background-color: #f8f9fa; min-height: 100vh;">
+    
+    <div class="card shadow-lg border-0">
+      <div class="card-header text-white" style="background-color: #343A40;">
+        <h3 class="mb-0">User Profile</h3>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          
+          <div class="col-md-4 text-center border-end">
+            <img src="<%= user.image %>" class="img-fluid rounded-circle mb-3" style="max-width: 200px; height:200px; object-fit:cover;" alt="User Image">
+            <h4 class="text-dark"><%= user.firstname %> <%= user.lastname %></h4>
+            <span class="badge" style="background-color:#343A40; color: white;">Active User</span>
+          </div>
+
+          <div class="col-md-8">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th width="30%">Email :</th>
+                  <td><%= user.email %></td>
+                </tr>
+                <tr>
+                  <th>Contact :</th>
+                  <td><%= user.contact %></td>
+                </tr>
+                <tr>
+                  <th>Gender :</th>
+                  <td><%= user.gender %></td>
+                </tr>
+                <tr>
+                  <th>Hobbies :</th>
+                  <td>
+                    <% if (user.hobbies && Array.isArray(user.hobbies)) { %>
+                      <% user.hobbies.forEach(function(hobby) { %>
+                        <span class="badge me-1" style="background-color:#343A40; color:white ;"><%= hobby %></span>
+                      <% }); %>
+                    <% } else { %>
+                      <span class="badge bg-secondary" style="color:white "><%= user.hobbies %></span>
+                    <% } %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="/users/edit/<%= user._id %>" class="btn text-white" style="background-color:#343A40;">Edit Profile</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include ('footer') %>

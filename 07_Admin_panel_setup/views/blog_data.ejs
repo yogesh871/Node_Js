@@ -1,0 +1,165 @@
+<%- include('header') %>
+     <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center px-4">
+                        <h4 class="page-title">Tables</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title m-b-0">Filter Blogs by Category</h5>
+                      </div>
+            
+                      <div class="filter-container">
+                        <div class="text-center">
+                          <div class="d-flex flex-wrap justify-content-center">
+                      
+                            <a href="/blogs/view-blog/category/all" 
+                               class="btn filter-btn <%= category === 'all' ? 'active-btn' : '' %>">All</a>
+                      
+                            <a href="/blogs/view-blog/category/Technology" 
+                               class="btn filter-btn <%= category === 'Technology' ? 'active-btn' : '' %>">Technology</a>
+                      
+                            <a href="/blogs/view-blog/category/Lifestyle" 
+                               class="btn filter-btn <%= category === 'Lifestyle' ? 'active-btn' : '' %>">Lifestyle</a>
+                      
+                            <a href="/blogs/view-blog/category/Travel" 
+                               class="btn filter-btn <%= category === 'Travel' ? 'active-btn' : '' %>">Travel</a>
+                      
+                            <a href="/blogs/view-blog/category/Health" 
+                               class="btn filter-btn <%= category === 'Health' ? 'active-btn' : '' %>">Health</a>
+                      
+                            <a href="/blogs/view-blog/category/Education" 
+                               class="btn filter-btn <%= category === 'Education' ? 'active-btn' : '' %>">Education</a>
+                      
+                            <a href="/blogs/view-blog/category/Business" 
+                               class="btn filter-btn <%= category === 'Business' ? 'active-btn' : '' %>">Business</a>
+                      
+                            <a href="/blogs/view-blog/category/Entertainment" 
+                               class="btn filter-btn <%= category === 'Entertainment' ? 'active-btn' : '' %>">Entertainment</a>
+                      
+                            <a href="/blogs/view-blog/category/Science" 
+                               class="btn filter-btn <%= category === 'Science' ? 'active-btn' : '' %>">Science</a>
+                      
+                            <a href="/blogs/view-blog/category/Fashion" 
+                               class="btn filter-btn <%= category === 'Fashion' ? 'active-btn' : '' %>">Fashion</a>
+                      
+                            <a href="/blogs/view-blog/category/History-Culture" 
+                               class="btn filter-btn <%= category === 'History-Culture' ? 'active-btn' : '' %>">History & Culture</a>
+                      
+                            <a href="/blogs/view-blog/category/Photography" 
+                               class="btn filter-btn <%= category === 'Photography' ? 'active-btn' : '' %>">Photography</a>
+                      
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="container py-3">
+                        <div class="row">
+                          <% if (blogs && blogs.length > 0) { %>
+                            <% blogs.forEach(function(blog) { %>
+                              <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="card blog-card">
+                        
+                                  <% if (blog.image && blog.image.trim() !== "") { %>
+                                    <img src="<%= blog.image %>" class="blog-image" alt="Blog Image">
+                                  <% } else { %>
+                                    <div class="placeholder-image">
+                                      <span>No Image Available</span>
+                                    </div>
+                                  <% } %>
+                        
+                                  <div class="card-body">
+                                    <h5 class="card-title"><%= blog.title %></h5>
+                                   
+                                    <p class="meta-info"><strong>Category:</strong> <%= blog.category %></p>
+                                    <p class="meta-info">
+                                      <i class="fas fa-calendar-alt me-1"></i> 
+                                      <%= new Date(blog.pubDate).toLocaleDateString("en-GB").replace(/\//g, "-") %>
+                                      <%= new Date(blog.pubDate).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) %>
+                                    </p>
+                                    
+                                    <div class="author-info">
+                                      <% if (blog.authImage) { %>
+                                        <img src="<%= blog.authImage %>" class="author-img" alt="Author">
+                                      <% } else { %>
+                                        <img src="https://source.unsplash.com/random/100x100?person" class="author-img" alt="Author">
+                                      <% } %>
+                                      <span class="author-name"><%= blog.authName %></span>
+                                    </div>
+                                  </div>
+                        
+                                  <div class="card-footer d-flex justify-content-between">
+                                    
+                                    <a href="/blogs/view-singleBlog/<%= blog._id %>" class="btn btn-sm btn-outline-success">
+                                      <i class="fas fa-edit me-1"></i> view
+                                    </a>
+                                    
+            
+                                   
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                            <% }) %>
+                          <% } else { %>
+                            <div class="empty-state">
+                              <i class="fas fa-book-open fa-3x mb-3" style="color: #bdc3c7;"></i>
+                              <h5>No blogs found</h5>
+                              <p class="text-muted">You haven't created any blogs yet or there are no blogs in this category.</p>
+                            </div>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+          
+    
+
+<%- include('footer') %>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Form</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color:  black;
+    }
+
+    form {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #001f3f;
+      padding: 30px;
+      border-radius: 10px ;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 16px;
+      color: #001f3f ;
+      font-weight : 600;
+    }
+
+    input {
+      padding:12px  8px;
+      border: 1px solid #001f3f;
+      border-radius: 4px;
+      background-color: white;
+      color: black;
+    }
+
+    button {
+      padding: 12px  10px;
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #11245c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Information</h1>
+
+  <form action="/add-student" method="post">
+    <label>First Name:</label>
+    <input type="text" name="firstname" placeholder="Enter Your FirstName " required>
+
+    <label>Last Name:</label>
+    <input type="text" name="lastname"  placeholder="Enter Your LastName" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" placeholder="Enter Your Email" required>
+
+    <label>Age:</label>
+    <input type="number" name="age" placeholder="Enter Your Age" required>
+
+    <label>Gender:</label>
+    <input type="text" name="gender" placeholder="Enter Your Gender" required>
+
+    <label>Contact:</label>
+    <input type="number" name="contact"  placeholder="Enter Your Contact">
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

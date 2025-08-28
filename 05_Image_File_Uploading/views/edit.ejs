@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Page</title>
+</head>
+<body>
+  <form action="/edit-product/<%= products._id %>" method="post" enctype="multipart/form-data">
+    <label>Product Name:</label>
+    <input type="text" name="name" placeholder="Product name" value="<%= products.name %>" required>
+    <br>
+
+    <label>Product Description:</label>
+    <input type="text" name="desc" placeholder="Product Description" value="<%= products.desc %>" required>
+    <br>
+
+    <label>Product Price:</label>
+    <input type="number" name="price" placeholder="Product Price" value="<%= products.price %>" required>
+    <br>
+
+    <label>Product Quantity:</label>
+    <input type="number" name="quantity" placeholder="Product Quantity" value="<%= products.quantity %>" required>
+    <br>
+
+    <label>Current Image:</label><br>
+    <% if (products.image) { %>
+      <img src="<%= products.image %>" alt="Product Image" width="150" style="margin-bottom:10px;">
+    <% } else { %>
+      <p>No image uploaded</p>
+    <% } %>
+    <br>
+
+    <label>Update Product Image:</label>
+    <input type="file" name="image">
+    <br>
+
+    <label>Product Category:</label>
+    <select name="category" required>
+      <option value="Electronic" <%= products.category === "Electronic" ? "selected" : "" %>>Electronic</option>
+      <option value="Fashion" <%= products.category === "Fashion" ? "selected" : "" %>>Fashion</option>
+      <option value="Glosry" <%= products.category === "Glosry" ? "selected" : "" %>>Glosry</option>
+      <option value="Cosmatic" <%= products.category === "Cosmatic" ? "selected" : "" %>>Cosmatic</option>
+      <option value="book" <%= products.category === "book" ? "selected" : "" %>>book</option>
+    </select>
+    <br><br>
+
+    <button type="submit">Edit Product</button>
+  </form>
+</body>
+</html>

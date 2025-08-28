@@ -1,0 +1,82 @@
+<%- include("header") %>
+
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Tables</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">All Users</h5>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Contact Number</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Hobbies</th>
+                                <th scope="col">Image</th>
+                                <th scope="col" colspan="2" >Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach((user, i) => { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= user.firstname %></td>
+                                    <td><%= user.lastname %></td>
+                                    <td><%= user.email %></td>
+                                    <td><%= user.contact %></td>
+                                    <td><%= user.gender %></td>
+                                    <td><%= user.hobbies %></td>
+                                    <td>
+                                        <% if (user.image) { %>
+                                            <img src="<%= user.image %>" alt="user image" width="50" />
+                                        <% } else { %>
+                                            No Image
+                                        <% } %>
+                                    </td>
+                                <td> <a href="/users/edit-user/<%= user._id %>">Edit</a></td>
+                                <td> <a href="/users/delete-user/<%= user._id %>">Delete</a></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("footer") %>
