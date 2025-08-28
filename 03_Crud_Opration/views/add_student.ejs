@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Student</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav {
+      background-color: #111;
+      padding: 15px 30px;
+      display: flex;
+      gap: 25px;
+      border-bottom: 1px solid #444;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 32px;
+      color: #fff;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #0f0f0f;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-size: 15px;
+      color: #bbb;
+    }
+
+    input {
+      width: 95%;
+      padding: 12px;
+      border: none;
+      margin-top: 8px;
+      border-radius: 6px;
+      font-size: 15px;
+      background-color: #1c1c1c;
+      color: #fff;
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      background-color: #fff;
+      color: #000;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/">Home</a>
+  </nav>
+
+  <h1>Add Student Information</h1>
+
+  <form action="/add_student" method="post">
+    <label>ID</label>
+    <input type="text"  name="id" placeholder="Enter Student ID" required>
+
+    <label >Name</label>
+    <input type="text" name="name" placeholder="Enter Student Name" required>
+
+    <label >Email</label>
+    <input type="email"  name="email" placeholder="Enter Student Email" required>
+
+    <label >Contact</label>
+    <input type="text" id="contact" name="contact" placeholder="Enter Student Mobile" required>
+
+    <button type="submit">Add Student</button>
+  </form>
+
+</body>
+</html>
