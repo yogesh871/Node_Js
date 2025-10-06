@@ -8,7 +8,7 @@ exports.AddBlogForm  =  async  (req , res) => {
   try {
      const users = await User.find();
      let user = await User.findById(req.user._id);
-      return res.render("addblog", { users, user });
+      return res.render("Blogs/addblog", { users, user });
  } catch (error) {
     console.log("page not Found");
     res.redirect("/")
@@ -46,7 +46,7 @@ exports.AllBlog = async (req, res) => {
 
     let pages = Math.ceil(totalBlogs / perPage)
     
-    return res.render("blog_data", {  users, user, blogs,  category, currentPage: page, totalPages: pages})
+    return res.render("Blogs/blog_data", {  users, user, blogs,  category, currentPage: page, totalPages: pages})
   } catch (error) {
     console.log("Error in AllBlog:", error);
     res.redirect("/");
@@ -97,7 +97,7 @@ exports.AddBlog = async (req, res) => {
         const blog = await Blog.findById(req.params.id);
   
   
-        return res.render("editblog", { blog, users, user });
+        return res.render("Blogs/editblog", { blog, users, user });
       
     } catch (error) {
       console.log("page not Found", error);
@@ -187,7 +187,7 @@ exports.singleBlog = async (req, res) => {
       return res.redirect("/blogs");
     }
 
-    return res.render("single_blog", { users, user, blog });
+    return res.render("Blogs/single_blog", { users, user, blog });
   } catch (error) {
     console.log("page not Found", error);
     res.redirect("/");

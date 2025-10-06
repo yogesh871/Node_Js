@@ -1,33 +1,53 @@
-const mongoose =  require("mongoose")
-
-const blogSchema =   mongoose.Schema ({
-    title : {
-        type : String
-    },
-    desc : {
-        type : String
-    },
-     pubDate: {
-        type : Date
-    },
-    category : {
-        type : String
-    },
-    image : {
-        type : String
-    },
-    authName : {
-        type : String
-    },
-    authImage : {
-        type : String
-    },
-    authId : {
-        type :String
-    }
-})
+const mongoose = require("mongoose");
 
 
-const Blog =  mongoose.model("Blogs" , blogSchema)
+const commentSchema = new mongoose.Schema({
+  name: { 
+    type: String,
+     required: true 
+    },         
+  email: {
+     type: String 
+    },                       
+  text: {
+     type: String, 
+     required: true
+     },          
+  createdAt: {
+     type: Date, 
+     default: Date.now },    
+});
 
-module.exports = Blog
+
+const blogSchema = new mongoose.Schema({
+  title: {
+     type: String, 
+    },      
+  desc: { 
+    type: String,
+    },         
+  pubDate: {
+     type: Date, 
+     default: Date.now 
+    },     
+  category: { 
+    type: String 
+  },                     
+  image: { 
+    type: String 
+  },                        
+  authName: { 
+    type: String 
+  },                     
+  authImage: 
+  { type: String 
+  },                    
+  authId: {
+     type: String 
+    },                        
+  comments: [commentSchema],                      
+});
+
+const Blog = mongoose.model("Blog", blogSchema);
+
+module.exports = Blog;

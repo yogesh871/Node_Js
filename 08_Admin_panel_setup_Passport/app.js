@@ -6,6 +6,10 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
 require("./middleware/local_strategy");
+const mongoStore =  require("connect-mongo")
+
+const flash = require('connect-flash');
+const flashMessage = require("./middleware/flashMessage");
 
 const app = express();
 const port = 8088;
@@ -17,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
+app.use(flash())
+
+
 
 app.use(
   session({
@@ -24,8 +31,12 @@ app.use(
     secret: "hello",
     saveUninitialized: false,
     resave: false,
+    store :  mongoStore.create({
+      mongoUrl:  "mongodb+srv://yogeshrd1708:yogesh17RD@cluster0.8rdbura.mongodb.net/", 
+      collectionName : "sessions"
+    }),
     cookie: {
-      maxAge: 1000 * 60 * 60,
+      maxAge: 1000 * 60 * 60 * 24,
     },
   })
 );
@@ -33,6 +44,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAutheticatUser);
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
+app.use(flashMessage.setFlashMessage);
+
 
 (async () => {
   await DB_connection();

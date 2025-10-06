@@ -17789,3 +17789,14 @@ button {
   .user-card-header  h3{
 color: white;
   }
+
+  .footer{
+    background-color: var(--main-color);
+    color:  white;
+  }
+
+
+  .submit-btn{
+     color: white;
+     background-color:  var(--main-color);
+  }

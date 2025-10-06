@@ -7,7 +7,7 @@ exports.AddUserForm = async (req, res) => {
     try {
         
         let user = req.user._id 
-         return res.render("adduser", {user})
+         return res.render("Users/adduser", {user})
     } catch (error) {
        console.log("page not Found");
        res.redirect("/")
@@ -20,7 +20,7 @@ exports.AllUser = async (req, res) => {
     try {
         const users = await User.find();
         let user = await User.findById(req.user._id)
-         return res.render("users_data", {users, user})
+         return res.render("Users/users_data", {users, user})
     } catch (error) {
        console.log("page not Found");
        res.redirect("/")
@@ -41,7 +41,7 @@ exports.EditUserForm = async (req, res) => {
     try {
         const userinfo = await User.findById(req.params.id);
         let user =  req.user._id
-        res.render("edituser", { users: userinfo, user });
+        res.render("Users/edituser", { users: userinfo, user });
     } catch (error) {
         console.error("Error loading edit form:", error);
     }
@@ -58,7 +58,7 @@ exports.EditUser = async (req, res) => {
         let imagePath = user.image;
         if (req.file) {
             const oldImagePath = path.join(__dirname, "..", user.image);
-            if (fs.existsSync(oldImagePath)) {
+            if ( oldImagePath != "") {
                 fs.unlinkSync(oldImagePath);
             }
             imagePath = `/uploads/${req.file.filename}`;

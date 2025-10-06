@@ -20,6 +20,7 @@ exports.loginPage = (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     return res.redirect("/dashboard");
+
   } catch (error) {
     console.log("something Wrong", error);
     return res.redirect("/");
@@ -137,7 +138,7 @@ exports.logOut = async (req, res) => {
 
     const totalPages = Math.ceil(totalBlogs / perPage);
 
-    res.render("my_blog", {  user, blogs, category, currentPage: page, totalPages,
+    res.render("Blogs/my_blog", {  user, blogs, category, currentPage: page, totalPages,
     });
 
   } catch (error) {
